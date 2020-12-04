@@ -1,5 +1,6 @@
 package com.automationPractice.tests;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import org.openqa.selenium.WebDriver;
@@ -16,44 +17,53 @@ public abstract class TestClass {
 	protected HomePage homePage;
 	protected SummerDressesPage summerDressesPage;
 	
-	ExcelFileHandling excelFileHandler;
-	
-	String baseURL, excelFileLocation,testCaseID,moduleName,testClassVerificationString;
+	protected ExcelFileHandling excelFileHandler;
+	protected static String excelFileLocation,testCaseID,moduleName;
+	String baseURL, testClassVerificationString;
 	HashMap<String, String> testData;
 
-	public abstract void test();
-		
-	public TestClass(WebDriver driver, String baseURL, String expectedString) {
+	public abstract void test() throws IOException;
+	
+	public TestClass(WebDriver driver, String baseURL) throws IOException {
 		this.driver = driver;
 		checkoutPage = new CheckoutPage(this.driver);
 		homePage = new HomePage(this.driver);
 		summerDressesPage = new SummerDressesPage(this.driver);
-		//excelFileHandler = new ExcelFileHandling(testDataLocation, testCaseName, sheetName);
 		this.baseURL = baseURL;
-		setExpectedResult(expectedString);
 		test();
 	}
 	
-	private void setExpectedResult(String expectedResult) {
+	public void setExpectedResult(String expectedResult) {
 		testClassVerificationString = expectedResult;
 	}
 	
 	private void setTestDataLocation(String excelFileLocation) {
-		this.excelFileLocation = excelFileLocation;
+		TestClass.excelFileLocation = excelFileLocation;
 	}
 	
 	private void setTestCaseName(String testCaseID) {
-		this.testCaseID = testCaseID;
+		TestClass.testCaseID = testCaseID;
 	}
 	
 	private void setSheetName(String moduleName) {
-		this.moduleName = moduleName;
+		TestClass.moduleName = moduleName;
 	}
 	
-	public void getExcelFileData(String excelFileLocation,String moduleName, String sheetName) {
+	//Use this function in the test method
+	public void getExcelFileData(String excelFileLocation,String moduleName, String testCaseName) throws IOException {
 		setTestDataLocation(excelFileLocation);
 		setSheetName(moduleName);
-		setTestCaseName(sheetName);
+		setTestCaseName(testCaseName);
+		excelFileHandler = new ExcelFileHandling(TestClass.excelFileLocation, TestClass.moduleName, TestClass.testCaseID);
+		testData = excelFileHandler.readTestData();
+	}
+	
+	public void writeData(String data) throws IOException {
+		excelFileHandler.writeTestResult(data);
+	}
+	
+	public void getTestData() {
+		testData = excelFileHandler.readTestData();
 	}
 	
 	public void navigateToWebsite() {
@@ -83,6 +93,10 @@ public abstract class TestClass {
     		return false;
     	};
     	return true;
+    }
+    
+    public String getExpectedResultFromHasmap(String data) {
+    	return testData.get(data);
     }
     
     
