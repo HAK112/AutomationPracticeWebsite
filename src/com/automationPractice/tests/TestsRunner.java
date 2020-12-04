@@ -5,10 +5,14 @@ import java.io.IOException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.automationPractice.tests.homepage.sanity.TS_HP_03_01;
+import com.automationPractice.tests.homepage.sanity.TS_HP_03_02;
+import com.automationPractice.tests.homepage.sanity.TS_HP_03_03;
 import com.automationPractice.tests.homepage.smoke.TS_HP_01_01;
 import com.automationPractice.tests.homepage.smoke.TS_HP_02_01;
 import com.automationPractice.tests.homepage.smoke.TS_HP_02_02;
-import com.automationPractice.tests.homepage.smoke.TS_HP_03_01;
+import com.automationPractice.tests.homepage.ui.TS_HP_02_03;
+import com.automationPractice.tests.homepage.ui.TS_HP_03_04;
 
 public class TestsRunner {
 	
@@ -33,17 +37,19 @@ public class TestsRunner {
 		TS_HP_01_01 testCase01 = new TS_HP_01_01(driver, webSiteUrl);
 		TS_HP_02_01 testCase02 = new TS_HP_02_01(driver, webSiteUrl);
 		TS_HP_02_02 testCase03 = new TS_HP_02_02(driver, webSiteUrl);
-		TS_HP_03_01 testCase04 = new TS_HP_03_01(driver, webSiteUrl);
 	}
 	
 	@SuppressWarnings("unused")
-	public void testsHomePageSanity() {
-		
+	public void testsHomePageSanity() throws IOException {
+		TS_HP_03_01 testCase05 = new TS_HP_03_01(driver, webSiteUrl);
+		TS_HP_03_02 testCase06 = new TS_HP_03_02(driver, webSiteUrl);
+		TS_HP_03_03 testCase07 = new TS_HP_03_03(driver, webSiteUrl);
 	}
 	
 	@SuppressWarnings("unused")
-	public void testsHomePageUI() {
-		
+	public void testsHomePageUI() throws IOException {
+		TS_HP_02_03 testCase04 = new TS_HP_02_03(driver, webSiteUrl);
+		TS_HP_03_04 testCase08 = new TS_HP_03_04(driver, webSiteUrl);
 	}
 	
 	@SuppressWarnings("unused")
@@ -79,9 +85,9 @@ public class TestsRunner {
 	public static void main(String[] args) throws IOException {
 		TestsRunner runner = new TestsRunner();
  	    runner.setup();
- 	    runner.testsHomePageSmoke();
- 	    runner.testsHomePageSanity();
- 	    runner.testsHomePageUI();
+// 	    runner.testsHomePageSmoke();
+// 	    runner.testsHomePageSanity();
+// 	    runner.testsHomePageUI();
  	    runner.testsDressesSummerPageSmoke();
 	    runner.testsDressesSummerPageSanity();
 	    runner.testsDressesSummerPageUI();

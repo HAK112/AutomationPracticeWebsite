@@ -1,4 +1,4 @@
-package com.automationPractice.tests.homepage.smoke;
+package com.automationPractice.tests.homepage.sanity;
 
 import java.io.IOException;
 
@@ -26,14 +26,10 @@ public class TS_HP_03_01 extends TestClass {
 		System.out.println("Detailed Steps: \n");	
 		navigateToWebsite();
 		System.out.println("Checking for Dress Element");
-		if(verifyResultContains(homePage.getDressesNavBarText(), "DRESSES")) {
-			System.out.println("Dress Element Found\n");
-			System.out.println("Checking for Summer Dress Element");
-			if(!verifyResultContains(homePage.getSummerDressesSubMenuText(), getExpectedResult())) {
-				System.out.println("Title Case Failed. Actual Result and Expected Result Differs");
-				writeData("Fail");
-				return;
-			}
+		if(!verifyResultEquals(homePage.getDressesNavBarText(), "DRESSES")) {
+			System.out.println("Title Case Failed. Actual Result and Expected Result Differs");
+			writeData("Fail");
+			return;
 		}
 		writeData("Pass");
 		System.out.println("Test Case Passes\n");

@@ -35,12 +35,12 @@ public class TS_HP_02_02 extends TestClass {
 			
 		}
 		homePage.clickSummerDresses();
-		if(!verifyResultContains(driver.getTitle(), getExpectedResult())) {
+		if(!verifyResultEquals(driver.getTitle(), getExpectedResult())) {
 			System.out.println("Title Case Failed. Actual Result and Expected Result Differs");
 			writeData("Fail");
 			return;
 		}
-		writeData("Pass:d2");
+		writeData("Pass");
 		System.out.println("Test Case Passes\n");
 	}
 

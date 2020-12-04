@@ -86,6 +86,12 @@ public class HomePage {
 		return summerDressesSubMenuItemElement.getText();
 	}
 	
+	public String getSummerDressesSubMenuItemTitle() {
+		hoverOverElement(womenNavbarElement);
+		isLoaded(summerDressesSubMenuItemElement);
+		return summerDressesSubMenuItemElement.getAttribute("Title");
+	}
+	
 	//Get text for Dresses for Nav Bar Element
 	public String getDressesNavBarText() {
 		isLoaded(dressesNavbarElement);
@@ -98,6 +104,13 @@ public class HomePage {
 		isLoaded(summerDressesSubMenuNavBarElement);
 		return summerDressesSubMenuNavBarElement.getText();
 	}
+	
+		public String getSummerDressesSubMenuTitle() {
+			isLoaded(dressesNavbarElement);
+			hoverOverElement(dressesNavbarElement);
+			isLoaded(summerDressesSubMenuNavBarElement);
+			return summerDressesSubMenuNavBarElement.getAttribute("Title");
+		}
 	
 	public void clickSummerDresses() {
 		hoverOverElement(dressesNavbarElement);

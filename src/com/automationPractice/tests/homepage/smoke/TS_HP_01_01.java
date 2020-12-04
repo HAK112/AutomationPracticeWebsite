@@ -22,12 +22,12 @@ public class TS_HP_01_01 extends TestClass {
 		System.out.println("Detailed Steps: \n");
 		navigateToWebsite();
 		System.out.println("Comparing Page Title");
-		if(!verifyResultContains(driver.getTitle(), getExpectedResult())){
+		if(!verifyResultEquals(driver.getTitle(), getExpectedResult())){
 			System.out.println("Title Case Failed. Actual Result and Expected Result Differs");
-			writeData("Fail");
+			writeData("FAIL");
 			return;
 		}
-		writeData("Pass:Hpl");
+		writeData("Pass");
 		System.out.println("Test Passes\n");
 	}
 	
